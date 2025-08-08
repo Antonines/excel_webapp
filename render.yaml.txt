@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: excel-webapp
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run app_persistent.py --server.address 0.0.0.0 --server.port $PORT
+    envVars:
+      - key: DATA_DIR
+        value: /data
+    disk:
+      name: app-data
+      mountPath: /data
+      sizeGB: 1
